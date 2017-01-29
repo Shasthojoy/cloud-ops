@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+IMAGE_NAME="jadametz/cloud-ops"
+
+function usage() {
+  cat <<EOF
+Usage: $0 [OPTION]
+    cloud-ops is a simple CLI intended to make getting started with cloud
+    infrastructure provisioning quick and easy.
+
+    --check         Checks your environment for an existing Docker image and env file
+    -b, --build     Builds a new cloud-ops Docker image and runs it
+    -h, --help      Displays this help menu and exits
+
+EOF
+  exit $1
+}
+
+function build() {
+  echo "building ${IMAGE_NAME}..."
+  docker build -t $IMAGE_NAME .
+}
+
+function run() {
+  docker run --rm -it -v $(pwd):/cloud-ops --env-file .docker_env $IMAGE_NAME
+}
+
+function check_env() {
+  if [[ "$(docker image ls -q ${IMAGE_NAME} 2> /dev/null)" == "" ]]; then
+    echo "${IMAGE_NAME} could not be found locally..."
+  fi
+
+  if [[ ! -f .docker_env ]]; then
+    echo "A .docker_env file is required to launch this container."
+    echo "-------------"
+    echo "AWS_ACCESS_KEY_ID=<your access key id"
+    echo "AWS_SECRET_ACCESS_KEY=<your secret access key\n"
+    exit 1
+  fi
+}
+
+while test $# -gt 0; do
+  case "$1" in
+  (-b | --build)
+    build
+    check_env
+    run
+    ;;
+  --check)
+    check_env
+    echo "Environment is ready to go!"
+    exit 0
+    ;;
+  (-h | --help)
+    usage 0
+    ;;
+  esac
+  shift
+done
+
+run
+
+exit 0

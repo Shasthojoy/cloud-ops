@@ -1,8 +1,5 @@
 FROM hashicorp/terraform:0.8.5
 
-# override $GOPATH WORKDIR
-WORKDIR /
-
 RUN apk add --update --no-cache \
     build-base \
     linux-headers \
@@ -13,7 +10,10 @@ RUN apk add --update --no-cache \
     py-pip \
   && pip install --upgrade pip \
   && pip install ansible \
-    awscli
+    awscli \
+  && mkdir /cloud-ops
+
+WORKDIR /cloud-ops
 
 # override terraform entrypoint
 ENTRYPOINT ["ash"]
