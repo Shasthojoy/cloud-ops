@@ -8,6 +8,7 @@ RUN apk add --update --no-cache \
     python \
     python-dev \
     py-pip \
+    tree \
   && pip install --upgrade pip \
   && pip install ansible \
     awscli \
