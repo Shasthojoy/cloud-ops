@@ -34,7 +34,7 @@ function check_env() {
     echo "A .docker_env file is required to launch this container."
     echo "-------------"
     echo "AWS_ACCESS_KEY_ID=<your access key id>"
-    echo "AWS_SECRET_ACCESS_KEY=<your secret access key>\n"
+    echo "AWS_SECRET_ACCESS_KEY=<your secret access key>"
     exit 1
   fi
 }
