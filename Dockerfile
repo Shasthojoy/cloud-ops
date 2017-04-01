@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:0.8.5
+FROM hashicorp/terraform:0.9.2
 
 RUN apk add --update --no-cache \
     build-base \
