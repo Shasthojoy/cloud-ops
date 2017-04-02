@@ -61,6 +61,8 @@ resource "aws_security_group" "docker" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags { Name = "docker-sg" }
 }
 
 resource "aws_instance" "swarm-manager" {
