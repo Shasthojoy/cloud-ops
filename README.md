@@ -13,6 +13,7 @@ To get started all you need is [Docker for Mac or Windows](https://www.docker.co
 `cloud-ops` comes packaged with
 
 - [Ansible](https://www.ansible.com/)
+- [Packer](https://www.packer.io/)
 - [Terraform](https://www.terraform.io/)
 
 and can currently be used with the following cloud providers
@@ -30,3 +31,7 @@ Usage: ./cloud-ops [OPTION]
     -b, --build     Builds a new cloud-ops Docker image and runs it
     -h, --help      Displays this help menu and exits
 ```
+
+## Repository Contents (Disclaimer)
+
+The contents of this repository past the root level are configuration for my personal cloud. While the configuration can certainly be used for reference and examples, __I would suggest that you review and understand all settings, options, and configurations used before blindly using any of this__.
