@@ -1,7 +1,9 @@
+# us-west-2 variables
 variable "name"              { }
 variable "artifact_type"     { }
 variable "region"            { }
 
+# VPC
 variable "vpc_cidr"         { }
 variable "azs"              { }
 variable "public_subnets"   { }
